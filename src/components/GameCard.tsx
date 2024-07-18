@@ -9,7 +9,7 @@ interface Props {
 
 export default function GameCard({ game }: Props) {
   return (
-    <Card borderRadius={10} overflow={"hidden"}>
+    <Card width={"400px"} borderRadius={10} overflow={"hidden"}>
       <Image src={getCroppedImage(game.background_image)}></Image>
       <CardBody>
         <HStack justifyContent={"space-between"}>
