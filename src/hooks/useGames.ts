@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
+import { Genre } from "./useGenres";
 
 export interface Game {
   id: number;
@@ -13,7 +14,7 @@ interface FetchGames {
   results: Game[];
 }
 
-export default function useGames() {
+export default function useGames(selectedGenre: Genre | null) {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ export default function useGames() {
   useEffect(() => {
     setLoading(true);
     apiClient
-      .get<FetchGames>("/games")
+      .get<FetchGames>("/games", { params: { genres: selectedGenre?.id } })
       .then((res) => {
         setGames(res.data.results);
         setLoading(false);
@@ -30,7 +31,7 @@ export default function useGames() {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [selectedGenre?.id]);
 
   return { games, error, isLoading };
 }
