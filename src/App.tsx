@@ -5,8 +5,11 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import SortSelector from "./components/SortSelector";
+
 export default function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [sortOrder, setSortOrder] = useState<string>("");
+
   return (
     <Grid
       templateAreas={{
@@ -19,21 +22,24 @@ export default function App() {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar></NavBar>
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GridItem area={"side"} paddingX={"15px"}>
           <GenreList
             selectedGenre={selectedGenre}
             onSelectGenre={(genre) => setSelectedGenre(genre)}
-          ></GenreList>
+          />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
         <HStack paddingLeft={2} marginBottom={5}>
-          <SortSelector></SortSelector>
+          <SortSelector
+            sortorder={sortOrder}
+            onSelectSortOrder={(order) => setSortOrder(order)}
+          />
         </HStack>
-        <GameGrid selectedGenre={selectedGenre}></GameGrid>
+        <GameGrid selectedGenre={selectedGenre} sortOrder={sortOrder} />
       </GridItem>
     </Grid>
   );
