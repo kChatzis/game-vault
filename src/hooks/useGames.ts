@@ -16,7 +16,8 @@ interface FetchGames {
 
 export default function useGames(
   selectedGenre: Genre | null,
-  sortOrder: string
+  sortOrder: string,
+  searchText: string
 ) {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
@@ -26,7 +27,11 @@ export default function useGames(
     setLoading(true);
     apiClient
       .get<FetchGames>("/games", {
-        params: { genres: selectedGenre?.id, ordering: sortOrder },
+        params: {
+          genres: selectedGenre?.id,
+          ordering: sortOrder,
+          search: searchText,
+        },
       })
       .then((res) => {
         setGames(res.data.results);
@@ -36,7 +41,7 @@ export default function useGames(
         setError(err.message);
         setLoading(false);
       });
-  }, [selectedGenre?.id, sortOrder]);
+  }, [selectedGenre?.id, sortOrder, searchText]);
 
   return { games, error, isLoading };
 }

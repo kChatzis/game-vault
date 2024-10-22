@@ -7,10 +7,19 @@ import { Genre } from "../hooks/useGenres";
 interface Props {
   selectedGenre: Genre | null;
   sortOrder: string;
+  searchText: string;
 }
 
-export default function GameGrid({ selectedGenre, sortOrder }: Props) {
-  const { games, error, isLoading } = useGames(selectedGenre, sortOrder);
+export default function GameGrid({
+  selectedGenre,
+  sortOrder,
+  searchText,
+}: Props) {
+  const { games, error, isLoading } = useGames(
+    selectedGenre,
+    sortOrder,
+    searchText
+  );
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>

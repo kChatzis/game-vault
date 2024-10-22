@@ -9,6 +9,7 @@ import SortSelector from "./components/SortSelector";
 export default function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const [sortOrder, setSortOrder] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
 
   return (
     <Grid
@@ -22,7 +23,7 @@ export default function App() {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar />
+        <NavBar onSearch={(searchText) => setSearchText(searchText)} />
       </GridItem>
       <Show above="lg">
         <GridItem area={"side"} paddingX={"15px"}>
@@ -39,7 +40,11 @@ export default function App() {
             onSelectSortOrder={(order) => setSortOrder(order)}
           />
         </HStack>
-        <GameGrid selectedGenre={selectedGenre} sortOrder={sortOrder} />
+        <GameGrid
+          selectedGenre={selectedGenre}
+          sortOrder={sortOrder}
+          searchText={searchText}
+        />
       </GridItem>
     </Grid>
   );
