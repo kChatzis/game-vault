@@ -9,7 +9,7 @@ export default function ColorModeSwitch() {
         isChecked={colorMode === "dark"}
         onChange={toggleColorMode}
       ></Switch>
-      <Text>dark mode</Text>
+      <Text whiteSpace={"nowrap"}>dark mode</Text>
     </HStack>
   );
 }
