@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function GenreList({ onSelectGenre, selectedGenre }: Props) {
-  const { genres, error, isLoading } = useGenres();
+  const { genres, isLoading } = useGenres();
   return (
     <>
       <Heading>Genres</Heading>
