@@ -12,4 +12,4 @@ Follow these steps:
     Get a RAWG API key at https://rawg.io/apidocs.
     Create a .env file at the root of the project with VITE_RAWG_API_KEY="YOUR API KEY"
     Add the API key to src/services/api-client.ts
-    Run "bun run dev to" start the web server.
+    Run "bun run dev" to  start the web server.
